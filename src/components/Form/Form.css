@@ -1,0 +1,14 @@
+form {
+    display:flex;
+    flex-direction:column;
+    row-gap: 1em;
+    justify-content:center;
+    align-items: center;
+}
+
+form button{
+
+    width: fit-content;
+    padding:1em 2em;
+    text-transform:uppercase
+}
