@@ -12,11 +12,14 @@ function App() {
   };
   console.log("activities:",activities)
 
+  const isGoodWeather = true;
+  const filteredActivities = activities.filter((activity) => activity.isForGoodWeather === isGoodWeather);
+
   return (
     <>
       <h1>Weather & Activities App</h1>
       <List 
-      activities={activities}/>
+      activities={filteredActivities} isGoodWeather={isGoodWeather}/>
       <Form onAddActivity={handleAddActivity}/>
     </>
   )

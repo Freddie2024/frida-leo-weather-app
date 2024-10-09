@@ -7,11 +7,11 @@ export default function Form({onAddActivity}) {
         const formData = new FormData(e.target);
         const data = Object.fromEntries(formData);
         console.log("Activity Added:", data);
-        onAddActivity({ name: data.name, isForGoodWeather: data.goodweather === "on", id:uid(), category: data.category});
-        e.target.reset;
+        const { name, category, goodweather } = data;
+        onAddActivity({ name, isForGoodWeather: goodweather === "on", id: uid(), category});
+        e.target.reset();
     }
     
-
     return (
         <>
         <form onSubmit={handleSubmit}>
@@ -37,5 +37,4 @@ export default function Form({onAddActivity}) {
         </form>
         </>
     )
-
 }
