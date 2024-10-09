@@ -1,7 +1,6 @@
 import "./List.css";
 import { Fragment } from "react";
 import ListItem from "../ListItem/ListItem";
-// import useLocalStorageState from "use-local-storage-state";
 
 export default function List({ activities = []}) 
 {

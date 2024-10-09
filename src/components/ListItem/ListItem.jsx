@@ -1,12 +1,10 @@
+import "./ListItem.css"
+
 export default function ListItem({name, category, isForGoodWeather}) {
     return (
-    <card>
-<h4>
-    {name}
-</h4>
-<span>
-   Category: {category}
-</span>
-{isForGoodWeather === true ? <p>For good weather</p> : ""}
-    </card>)
+    <li className={`${ isForGoodWeather === true ? "goodweather" : "badweather" }`}>
+        <h3>{name}</h3>
+        <p className="category">Category: {category}</p>
+        {isForGoodWeather === true ? <p className="weather">For good weather</p> : ""}
+    </li>)
 }
