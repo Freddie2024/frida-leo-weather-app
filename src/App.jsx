@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import './App.css'
+import LocationPicker from './components/LocationPicker/LocationPicker'
 import Form from "./components/Form/Form"
 import List from "./components/List/List"
 import WeatherDisplay from "./components/WeatherDisplay/WeatherDisplay"
@@ -9,6 +10,12 @@ function App() {
 
   const [activities, setActivities] = useLocalStorageState("activities", {defaultValue: []});
   const [weather, setWeather] = useState([]);
+  const [location, setLocation] = useState("");
+
+  function handleLocation(newLocation){
+    setLocation(newLocation)
+    console.log("New location:", newLocation)
+  }
 
   function handleAddActivity (newActivity){
     setActivities([...activities, newActivity])
@@ -20,13 +27,12 @@ function App() {
    );
   };
   
-  // FETCH - WEATHER
-    
+  // FETCH - WEATHER    
     useEffect(() => {
      
       const intervalId = setInterval(async () => {
             try {
-            const response = await fetch("https://example-apis.vercel.app/api/weather");
+            const response = await fetch(`https://example-apis.vercel.app/api/weather/${location}`);
             if (response.ok) {
               const weather = await response.json();
               setWeather(weather);
@@ -34,10 +40,10 @@ function App() {
         }   catch (error) {
             console.error("Bad response. Unable to fetch data.", error)
         }
-      }, 5000);
+      }, 8000);
 
       return () => clearInterval(intervalId);
-    }, []);
+    }, [location]);
     
   console.log("Activities:", activities)
   console.log("Current weather:", weather)
@@ -50,6 +56,7 @@ function App() {
   return (
     <>
       <h1>Weather & Activities App</h1>
+      <LocationPicker onChangeLocation={handleLocation}/>
       <WeatherDisplay 
         condition={weather.condition} 
         temperature={weather.temperature} 
