@@ -44,7 +44,7 @@ function App() {
         }
       }
          startFetching();
-        }, 100000000);
+        }, 5000);
       } 
       
       weatherUpdate()
