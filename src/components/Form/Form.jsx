@@ -24,10 +24,10 @@ export default function Form({onAddActivity}) {
 
             <label htmlFor="category">Category: 
                 <select type="dropdown" id="category" name="category">
-                    <option name="sports">sports</option>
-                    <option name="culture">culture</option>
-                    <option name="social">social</option>
-                    <option name="home">at home</option>
+                    <option name="sports">Sports</option>
+                    <option name="culture">Culture</option>
+                    <option name="social">Social</option>
+                    <option name="home">At Home</option>
                 </select>
             </label>
 

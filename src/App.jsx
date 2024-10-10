@@ -4,12 +4,14 @@ import LocationPicker from './components/LocationPicker/LocationPicker'
 import Form from "./components/Form/Form"
 import List from "./components/List/List"
 import WeatherDisplay from "./components/WeatherDisplay/WeatherDisplay"
+import CategoryFilter from "./components/CategoryFilter/CategoryFilter";
 import useLocalStorageState from 'use-local-storage-state'
 
 function App() {
 
   const [activities, setActivities] = useLocalStorageState("activities", {defaultValue: []});
   const [weather, setWeather] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState("");
   const [location, setLocation] = useState("");
 
   function handleLocation(newLocation){
@@ -52,6 +54,7 @@ function App() {
   const filteredActivities = isGoodWeather != null
   ? activities.filter((activity) => activity.isForGoodWeather === isGoodWeather)
   : activities;
+  const categories = ["sports", "culture", "social", "home"]; 
 
   return (
     <>
@@ -61,6 +64,11 @@ function App() {
         condition={weather.condition} 
         temperature={weather.temperature} 
         location={weather.location}
+      />
+       <CategoryFilter 
+                categories={categories} 
+                selectedCategory={selectedCategory} 
+                onCategoryChange={setSelectedCategory} 
       />
       <List 
         onDeleteActivity={handleDeleteActivity}
