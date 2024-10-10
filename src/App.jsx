@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import './App.css'
 import Form from "./components/Form/Form"
 import List from "./components/List/List"
+import WeatherDisplay from "./components/WeatherDisplay/WeatherDisplay"
 import useLocalStorageState from 'use-local-storage-state'
 
 function App() {
@@ -53,7 +54,7 @@ function App() {
   return (
     <>
       <h1>Weather & Activities App</h1>
-      <p></p>
+      <WeatherDisplay condition={weather.condition} temperature={weather.temperature} location={weather.location}/>
       <List 
       activities={filteredActivities} isGoodWeather={isGoodWeather}/>
       <Form onAddActivity={handleAddActivity}/>
