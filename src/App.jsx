@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import './App.css'
+import LocationPicker from './components/LocationPicker/LocationPicker'
 import Form from "./components/Form/Form"
 import List from "./components/List/List"
 import WeatherDisplay from "./components/WeatherDisplay/WeatherDisplay"
@@ -23,15 +24,21 @@ function App() {
   // FETCH - WEATHER
 
   const [weather, setWeather] = useState([]);
-    
+  
+  const [location, setLocation] = useState("")
+
+  function handleLocation(newLocation){
+    setLocation(newLocation)
+    console.log("New location:", newLocation)
+  }
+
     useEffect(() => {
-     
-      function weatherUpdate(){
+      const weatherUpdate =
         setInterval(() => {
           async function startFetching(){
             try{
             const response = await fetch(
-              "https://example-apis.vercel.app/api/weather"
+              `https://example-apis.vercel.app/api/weather/${location}`
             );
             if (response.ok){
             const weather = await response.json();
@@ -44,13 +51,11 @@ function App() {
         }
       }
          startFetching();
-        }, 5000);
-      } 
-      
-      weatherUpdate()
+        }, 8000);
 
-    }, []);
-    
+        return () => clearInterval(weatherUpdate);
+      }, [location]
+  );  
 
   console.log("Activities:", activities)
   console.log("Current weather:", weather)
@@ -61,6 +66,7 @@ function App() {
   return (
     <>
       <h1>Weather & Activities App</h1>
+      <LocationPicker onChangeLocation={handleLocation}/>
       <WeatherDisplay condition={weather.condition} temperature={weather.temperature} location={weather.location}/>
       <List onDeleteActivity={handleDeleteActivity}
       activities={filteredActivities} isGoodWeather={isGoodWeather}/>
