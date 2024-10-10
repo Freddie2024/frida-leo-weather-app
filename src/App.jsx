@@ -13,6 +13,13 @@ function App() {
     setActivities([...activities, newActivity])
   };
 
+  function handleDeleteActivity(removeActivityId) {
+    // if (!activities) return;
+    const updatedActivities = activities.filter((activity) => activity.id !== removeActivityId);
+    console.log("removeActivityId", removeActivityId)
+    console.log("updatedActivities", updatedActivities)
+    setActivities(updatedActivities);
+  }
   // FETCH - WEATHER
 
   const [weather, setWeather] = useState([]);
@@ -36,8 +43,8 @@ function App() {
           console.error("Bad response. Unable to fetch data.", error)
         }
       }
-          startFetching();
-        }, 10000);
+         startFetching();
+        }, 100000000);
       } 
       
       weatherUpdate()
@@ -55,7 +62,7 @@ function App() {
     <>
       <h1>Weather & Activities App</h1>
       <WeatherDisplay condition={weather.condition} temperature={weather.temperature} location={weather.location}/>
-      <List 
+      <List onDeleteActivity={handleDeleteActivity}
       activities={filteredActivities} isGoodWeather={isGoodWeather}/>
       <Form onAddActivity={handleAddActivity}/>
     </>
