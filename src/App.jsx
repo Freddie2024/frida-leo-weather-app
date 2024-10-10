@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react'
 import './App.css'
 import Form from "./components/Form/Form"
 import List from "./components/List/List"
@@ -10,14 +11,49 @@ function App() {
   function handleAddActivity (newActivity){
     setActivities([...activities, newActivity])
   };
-  console.log("activities:",activities)
 
-  const isGoodWeather = true;
+  // FETCH - WEATHER
+
+  const [weather, setWeather] = useState([]);
+    
+    useEffect(() => {
+     
+      function weatherUpdate(){
+        setInterval(() => {
+          async function startFetching(){
+            try{
+            const response = await fetch(
+              "https://example-apis.vercel.app/api/weather"
+            );
+            if (response.ok){
+            const weather = await response.json();
+            setWeather(weather);
+          }
+        }
+        
+        catch(error){
+          console.error("Bad response. Unable to fetch data.", error)
+        }
+      }
+          startFetching();
+        }, 10000);
+      } 
+      
+      weatherUpdate()
+
+    }, []);
+    
+
+  console.log("Activities:", activities)
+  console.log("Current weather:", weather)
+
+  const isGoodWeather = weather.isGoodWeather;
   const filteredActivities = activities.filter((activity) => activity.isForGoodWeather === isGoodWeather);
 
   return (
     <>
       <h1>Weather & Activities App</h1>
+      <p></p>
       <List 
       activities={filteredActivities} isGoodWeather={isGoodWeather}/>
       <Form onAddActivity={handleAddActivity}/>
