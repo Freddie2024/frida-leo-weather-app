@@ -1,8 +1,22 @@
+.activities__list h2{
+    background-color:salmon;
+    text-transform: uppercase;
+    color:white;
+    padding:1em 2em;
+    border-radius:30px;
+    width:fit-content;
+    margin:auto;
+
+}
+
 .list{
     display:flex;
     flex-direction: row;
     flex-wrap: wrap;
     gap: 1em;
     justify-content: center;
-    
+    align-items: center;
+    align-content:center;
+    padding-inline-start: 0;
 }
+
