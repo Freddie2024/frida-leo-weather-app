@@ -27,7 +27,7 @@ export default function Form({onAddActivity}) {
                     <option name="sports">Sports</option>
                     <option name="culture">Culture</option>
                     <option name="social">Social</option>
-                    <option name="home">At Home</option>
+                    <option name="home" value="home">Home</option>
                 </select>
             </label>
 

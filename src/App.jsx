@@ -46,7 +46,7 @@ function App() {
         }   catch (error) {
             console.error("Bad response. Unable to fetch data.", error)
         }
-      }, 8000);
+      }, 5000);
 
       return () => clearInterval(intervalId);
     }, [location]);
