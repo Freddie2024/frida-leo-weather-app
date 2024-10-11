@@ -16,7 +16,6 @@ function App() {
 
   function handleLocation(newLocation){
     setLocation(newLocation)
-    console.log("New location:", newLocation)
   }
 
   function handleAddActivity (newActivity){
@@ -28,10 +27,6 @@ function App() {
       prevActivities.filter((activity) => activity.id !== removeActivityId)
    );
   };
-
-  function handleCategoryChange(category) {
-    setSelectedCategory(category);
-}
   
   // FETCH - WEATHER    
     useEffect(() => {
@@ -50,9 +45,6 @@ function App() {
 
       return () => clearInterval(intervalId);
     }, [location]);
-    
-  console.log("Activities:", activities)
-  console.log("Current weather:", weather)
 
   const isGoodWeather = weather?.isGoodWeather;
   const weatherFilteredActivities = isGoodWeather != null
@@ -73,10 +65,10 @@ function App() {
         temperature={weather.temperature} 
         location={weather.location}
       />
-       <CategoryFilter 
-                categories={categories} 
-                selectedCategory={selectedCategory} 
-                onCategoryChange={setSelectedCategory} 
+      <CategoryFilter 
+          onCategoryChange={setSelectedCategory} 
+          categories={categories} 
+          selectedCategory={selectedCategory} 
       />
       <List 
         onDeleteActivity={handleDeleteActivity}
