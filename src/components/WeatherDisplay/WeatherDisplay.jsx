@@ -1,8 +1,8 @@
 import "./WeatherDisplay.css"
 
+
 export default function WeatherDisplay(weather) {
-    const weatherLocation = weather.location.toLowerCase()
-    console.log(weatherLocation)
+    const weatherLocation = weather.location ? weather.location.toLowerCase() : '';
     return(    <>
         <section className={`weatherdisplay__container ${weatherLocation}`}>
             <div className="location-placeholder">
