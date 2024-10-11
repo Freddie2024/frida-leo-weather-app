@@ -14,7 +14,7 @@ export default function List({ activities = [], isGoodWeather, onDeleteActivity 
         <h2>{heading}</h2>
         
         <ul className="list">
-            {activities.map(({ id, name, category, isForGoodWeather }) => (
+            {activities.map(({ id, name, category, isForGoodWeather, nameLength }) => (
                 <ListItem 
                     id={id}
                     key={id}
@@ -23,6 +23,7 @@ export default function List({ activities = [], isGoodWeather, onDeleteActivity 
                     isForGoodWeather={isForGoodWeather}
                     onDelete={onDeleteActivity}
                     activity
+                    nameLength={name.length}
                 />
                ))}
            </ul>

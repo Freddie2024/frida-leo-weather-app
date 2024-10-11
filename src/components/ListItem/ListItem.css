@@ -9,13 +9,35 @@ li {
 
 @media (min-width: 600px) {
   li {
-    flex-basis: 30%;
+    flex-basis: 40%;
   }
 }
+
+.sports {
+  background-color: lightyellow; 
+}
+
+.culture {
+  background-color: lightseagreen
+}
+
+.social {
+  background-color: lightcoral
+}
+
+.home {
+  background-color: lightblue
+}
+
 
 li h3 {
   font-size: 22px;
   text-transform: uppercase;
+}
+
+.resize{
+  font-size:20px;
+  padding:0 1em;
 }
 
 .goodweather {
@@ -35,8 +57,18 @@ li h3 {
     width:fit-content;
     text-align: center;
     margin:auto;
-    padding:0.6em 1em;
+    padding:0.3em 0.6em;
     border-radius: 20px;
+}
+
+.home .weather {
+  background-color: lightblue;
+  width:fit-content;
+  text-align: center;
+  margin:auto;
+  padding:0.3em 0.6em;
+  border-radius: 20px;
+  border: 1px solid blue;
 }
 
 .delete__button {
@@ -49,6 +81,10 @@ li h3 {
   margin-top: 1em;
 }
 
+.delete__button:hover {
+  border: 2px solid blue;
+}
+
 .goodweather .delete__button {
   color: blue;
 }
@@ -57,18 +93,3 @@ li h3 {
   color: darkred;
 }
 
-.sports {
-  background-color: lightyellow; 
-}
-
-.culture {
-  background-color: lightseagreen
-}
-
-.social {
-  background-color: lightcoral
-}
-
-.home {
-  background-color: lightblue
-}
