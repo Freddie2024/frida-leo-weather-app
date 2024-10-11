@@ -8,7 +8,7 @@ export default function CategoryFilter({ categories, selectedCategory, onCategor
                 value={selectedCategory} 
                 onChange={(e) => onCategoryChange(e.target.value)}
             >
-                <option value="">All</option>
+                <option value="">Show all</option>
                 {categories.map((category) => (
                     <option key={category} value={category}>
                         {category.charAt(0).toUpperCase() + category.slice(1)}
