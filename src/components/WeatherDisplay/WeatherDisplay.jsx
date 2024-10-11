@@ -1,8 +1,10 @@
 import "./WeatherDisplay.css"
 
 export default function WeatherDisplay(weather) {
+    const weatherLocation = weather.location.toLowerCase()
+    console.log(weatherLocation)
     return(    <>
-        <section className={`weatherdisplay__container ${ weather.location === "Europe" ? "europe" : "" }${ weather.location === "Sahara" ? "sahara" : "" }${ weather.location === "Rainforest" ? "rainforest" : "" }${ weather.location === "Arctic" ? "arctic" : "" }`}>
+        <section className={`weatherdisplay__container ${weatherLocation}`}>
             <div className="location-placeholder">
                 <h4> {weather.location} </h4>
             </div>
@@ -10,7 +12,7 @@ export default function WeatherDisplay(weather) {
                     <span className="weather-icon"> {weather.condition} </span>
             </div>
             <div className="weather-info">
-                <h2> {weather.temperature}º C </h2>
+                <h2> {weather.temperature}º</h2>
             </div>
         </section>
         </>
