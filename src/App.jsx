@@ -28,6 +28,10 @@ function App() {
       prevActivities.filter((activity) => activity.id !== removeActivityId)
    );
   };
+
+  function handleCategoryChange(category) {
+    setSelectedCategory(category);
+}
   
   // FETCH - WEATHER    
     useEffect(() => {
@@ -51,10 +55,14 @@ function App() {
   console.log("Current weather:", weather)
 
   const isGoodWeather = weather?.isGoodWeather;
-  const filteredActivities = isGoodWeather != null
+  const weatherFilteredActivities = isGoodWeather != null
   ? activities.filter((activity) => activity.isForGoodWeather === isGoodWeather)
   : activities;
   const categories = ["sports", "culture", "social", "home"]; 
+
+  const categoryFilteredActivities = weatherFilteredActivities.filter(activity =>
+    selectedCategory === "" || activity.category.toLowerCase() === selectedCategory
+);
 
   return (
     <>
@@ -72,7 +80,7 @@ function App() {
       />
       <List 
         onDeleteActivity={handleDeleteActivity}
-        activities={filteredActivities} 
+        activities={categoryFilteredActivities} 
         isGoodWeather={isGoodWeather}
       />
       <Form onAddActivity={handleAddActivity} />
